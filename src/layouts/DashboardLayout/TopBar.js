@@ -32,8 +32,8 @@ const TopBar = ({
 }) => {
   const classes = useStyles();
   const [notifications] = useState([]);
-  const navigate = useNavigate();
   const { handleLogout } = useContext(Context);
+  const navigate = useNavigate();
 
   return (
     <AppBar
@@ -58,13 +58,12 @@ const TopBar = ({
           </IconButton>
           <IconButton
             color="inherit"
-            onClick={handleLogout}
+            onClick={() => {
+              navigate('/app/dashboard');
+              handleLogout();
+            }}
           >
-            <InputIcon
-              onClick={() => {
-                navigate('/app/dashboard', { replace: true });
-              }}
-            />
+            <InputIcon />
           </IconButton>
         </Hidden>
         <Hidden lgUp>
