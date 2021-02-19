@@ -18,6 +18,8 @@ function AuthProvider({ children }) {
 
     setLoading(false);
   }, []);
+  console.log(loading, 'loading...');
+  // console.log(signed);
 
   async function handleLogin() {
     const { data: { token } } = await api.post('/authenticate');

@@ -53,9 +53,6 @@ const LoginView = () => {
               email: Yup.string().email('Must be a valid email').max(255).required('Email is required'),
               password: Yup.string().max(255).required('Password is required')
             })}
-            onSubmit={() => {
-              navigate('/app/products', { replace: true });
-            }}
           >
             {({
               errors,
@@ -164,7 +161,10 @@ const LoginView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
-                    onClick={handleLogin}
+                    onClick={() => {
+                      handleLogin();
+                      navigate('/app/products', { replace: true });
+                    }}
                   >
                     Sign in now
                   </Button>
