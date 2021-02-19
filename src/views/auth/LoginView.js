@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Link as RouterLink, useNavigate } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Formik } from 'formik';
 import {
@@ -28,7 +28,6 @@ const useStyles = makeStyles((theme) => ({
 
 const LoginView = () => {
   const classes = useStyles();
-  const navigate = useNavigate();
   const { signed, handleLogin } = useContext(Context);
 
   return (
@@ -163,7 +162,6 @@ const LoginView = () => {
                     variant="contained"
                     onClick={() => {
                       handleLogin();
-                      navigate('/app/products', { replace: true });
                     }}
                   >
                     Sign in now
