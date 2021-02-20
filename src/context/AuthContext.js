@@ -1,6 +1,6 @@
 import React, { createContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import api from '../api';
+import axios from '../axios';
 
 const Context = createContext();
 
@@ -12,7 +12,7 @@ function AuthProvider({ children }) {
     const token = localStorage.getItem('token');
 
     if (token) {
-      api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+      axios.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
       setSigned(true);
     }
 
@@ -22,16 +22,16 @@ function AuthProvider({ children }) {
   console.log(signed, 'autenticado');
 
   async function handleLogin() {
-    const { data: { token } } = await api.post('/authenticate');
+    const { data: { token } } = await axios.post('/authenticate');
     localStorage.setItem('token', JSON.stringify(token));
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    axios.defaults.headers.Authorization = `Bearer ${token}`;
     setSigned(true);
   }
 
   function handleLogout() {
     setSigned(false);
     localStorage.removeItem('token');
-    api.defaults.headers.Authorization = undefined;
+    axios.defaults.headers.Authorization = undefined;
   }
 
   return (
