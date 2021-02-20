@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import moment from 'moment';
@@ -18,7 +18,6 @@ import {
   makeStyles
 } from '@material-ui/core';
 import getInitials from 'src/utils/getInitials';
-import axios from 'src/axios';
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -32,13 +31,6 @@ const Results = ({ className, customers, ...rest }) => {
   const [selectedCustomerIds, setSelectedCustomerIds] = useState([]);
   const [limit, setLimit] = useState(10);
   const [page, setPage] = useState(0);
-
-  useEffect(() => {
-    (async () => {
-      const { data } = await axios.get('/users');
-      console.log(data);
-    })();
-  }, []);
 
   const handleSelectAll = (event) => {
     let newSelectedCustomerIds;
