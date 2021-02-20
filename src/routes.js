@@ -26,7 +26,7 @@ const routes = (signed) => [
   },
   {
     path: '/',
-    element: !signed ? <MainLayout /> : <Navigate to="/app/products" />,
+    element: !signed ? <MainLayout /> : <Navigate to="/app/dashboard" />,
     children: [
       { path: 'login', element: <LoginView /> },
       { path: 'register', element: <RegisterView /> },
