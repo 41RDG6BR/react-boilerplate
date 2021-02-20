@@ -1,38 +1,13 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext } from 'react';
 import PropTypes from 'prop-types';
-import axios from '../axios';
+import useAuth from './hooks/useAuth';
 
 const Context = createContext();
 
 function AuthProvider({ children }) {
-  const [signed, setSigned] = useState(false);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-
-    if (token) {
-      axios.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
-      setSigned(true);
-    }
-
-    setLoading(false);
-  }, []);
-  console.log(loading, 'loading...');
-  console.log(signed, 'autenticado');
-
-  async function handleLogin() {
-    const { data: { token } } = await axios.post('/authenticate');
-    localStorage.setItem('token', JSON.stringify(token));
-    axios.defaults.headers.Authorization = `Bearer ${token}`;
-    setSigned(true);
-  }
-
-  function handleLogout() {
-    setSigned(false);
-    localStorage.removeItem('token');
-    axios.defaults.headers.Authorization = undefined;
-  }
+  const {
+    signed, loading, handleLogin, handleLogout,
+  } = useAuth();
 
   return (
     <Context.Provider
