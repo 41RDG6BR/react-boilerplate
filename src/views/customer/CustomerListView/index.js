@@ -25,6 +25,7 @@ const CustomerListView = () => {
   useEffect(() => {
     (async () => {
       const { data } = await axios.get('/users');
+      console.log(data);
       setCustomers(data);
     })();
   }, []);
