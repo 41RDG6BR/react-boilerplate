@@ -18,6 +18,7 @@ const routes = (signed) => [
     children: [
       { path: 'account', element: <AccountView /> },
       { path: 'customers', element: <CustomerListView /> },
+      { path: 'addcustomer', element: <AddCustomer /> },
       { path: 'dashboard', element: <DashboardView /> },
       { path: 'products', element: <ProductListView /> },
       { path: 'settings', element: <SettingsView /> },
@@ -36,5 +37,9 @@ const routes = (signed) => [
     ]
   }
 ];
+
+const AddCustomer = () => (
+  <h1>Add customer</h1>
+);
 
 export default routes;

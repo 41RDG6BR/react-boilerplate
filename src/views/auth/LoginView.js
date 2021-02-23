@@ -160,9 +160,7 @@ const LoginView = () => {
                     size="large"
                     type="submit"
                     variant="contained"
-                    onClick={() => {
-                      handleLogin();
-                    }}
+                    onClick={handleLogin}
                   >
                     Sign in now
                   </Button>
