@@ -6,7 +6,10 @@ const Context = createContext();
 
 function AuthProvider({ children }) {
   const {
-    signed, loading, handleLogin, handleLogout,
+    signed,
+    loading,
+    handleLogin,
+    handleLogout,
   } = useAuth();
 
   return (
